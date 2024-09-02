@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import fondo from '../assets/fondoRegister.jpeg'
 import { useState } from 'react';  
-import { registrarAPI } from '../api/apiAuth';
+import { registrarAPI } from '../../infrastructure/api/apiAuth';
 
 import React from 'react'
 
