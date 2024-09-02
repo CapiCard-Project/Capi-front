@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        reveal: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+      },
       fontFamily: {
         'sans': ['Poppins', 'sans-serif'],
       },

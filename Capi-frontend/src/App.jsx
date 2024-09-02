@@ -8,6 +8,7 @@ import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import Home from "./Pages/Home"
 import Error404 from "./Pages/Error404"
+import Tienda from "./Pages/Tienda"
 
 function Logout() {
   localStorage.clear();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<ProtectRoute> <Home /> </ProtectRoute>} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/tienda" element={<ProtectRoute> <Tienda /> </ProtectRoute>} />
         </Routes>
 
 
