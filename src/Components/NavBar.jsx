@@ -2,6 +2,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import iconHome from '../assets/icon-home.png'
 import { Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import capi from '../assets/coint.png'
 
 const navigation = [
   { name: 'Home', href: '/home', current: true },
@@ -15,6 +17,9 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+
+  const [capipoins, setCapipoins] = useState(localStorage.getItem('capipoins'))
+
   return (
     <Disclosure as="nav" className="bg-gradient-to-br from-black to-[#070722] ">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -54,7 +59,8 @@ export default function NavBar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
+            <img src={capi} className='w-10'/>
+          <h3 className='text-white' >{capipoins}</h3>
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
