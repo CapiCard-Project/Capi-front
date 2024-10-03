@@ -9,6 +9,10 @@ import Register from "./Pages/Register"
 import Home from "./Pages/Home"
 import Error404 from "./Pages/Error404"
 import Tienda from "./Pages/Tienda"
+import Profile from "./Pages/Profile"
+
+//provaider
+import { CapiPointsProvider } from "./provaider/CapiPointsProvaider"
 
 function Logout() {
   localStorage.clear();
@@ -21,24 +25,25 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<Error404 />} />
-          <Route path="/" element={<LadinPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<ProtectRoute> <Home /> </ProtectRoute>} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/tienda" element={<ProtectRoute> <Tienda /> </ProtectRoute>} />
-        </Routes>
+      <CapiPointsProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/*" element={<Error404 />} />
+            <Route path="/" element={<LadinPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/home" element={<ProtectRoute> <Home /> </ProtectRoute>} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/tienda" element={<ProtectRoute> <Tienda /> </ProtectRoute>} />
+            <Route path="/profile" element={<ProtectRoute> <Profile/> </ProtectRoute>}/>
+          </Routes>
+        </BrowserRouter>
 
-
-      </BrowserRouter>
-
-      <Toaster
-        position="bottom-center"
-        reverseOrder={false}
-      />
+        <Toaster
+          position="bottom-center"
+          reverseOrder={false}
+        />
+      </CapiPointsProvider>
     </>
   )
 }
