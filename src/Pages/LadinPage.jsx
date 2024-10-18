@@ -1,15 +1,23 @@
-
+import { useNavigate } from 'react-router-dom';
+import seccion2 from '../assets/landing/seccion2.png';
+import seccion3 from '../assets/landing/seccion3.png';
 
 export const LandingPage = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/register');
+    }
+
     return (
       <div className="font-sans">
         {/* Sección 1 */}
-        <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: 'url(/path-to-your-image.jpg)' }}>
+        <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: 'url(src/assets/landing/seccion1.png)' }}>
           <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white">
-            <h1 className="text-5xl font-bold mb-4">Bienvenidos a Capibara Trading Cards</h1>
+            <h1 className="text-5xl font-bold mb-4">Capibara Trading Cards</h1>
             <h2 className="text-2xl mb-6">Colecciona, intercambia y disfruta de la aventura</h2>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Ingresar al Sitio
+            <button onClick={() => handleClick()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Comienza tu aventura
             </button>
           </div>
         </section>
@@ -26,7 +34,7 @@ export const LandingPage = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img src="/path-to-your-image2.jpg" alt="Capibara Cards" className="w-full rounded-lg shadow-lg" />
+            <img src={seccion2} alt="Capibara Cards" className="w-full rounded-lg shadow-lg" />
           </div>
         </section>
   
@@ -42,7 +50,7 @@ export const LandingPage = () => {
             </p>
           </div>
           <div className="lg:w-1/2">
-            <img src="/path-to-your-image3.jpg" alt="Marketplace Capibara" className="w-full rounded-lg shadow-lg" />
+            <img src={seccion3} alt="Marketplace Capibara" className="w-full rounded-lg shadow-lg" />
           </div>
         </section>
       </div>
