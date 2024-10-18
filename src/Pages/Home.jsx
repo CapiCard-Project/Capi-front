@@ -42,7 +42,7 @@ function Home() {
       <div className="flex flex-row w-full max-h-[500px] items-center">
 
         <div className="flex w-0 md:w-4/12 h-full">
-          <img src={fondo} alt="fondo" />
+          <img src={fondo} alt="fondo" className="w-full object-cover"/>
 
         </div>
 

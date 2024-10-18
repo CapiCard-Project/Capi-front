@@ -13,6 +13,7 @@ import Profile from "./Pages/Profile"
 
 //provaider
 import { CapiPointsProvider } from "./provaider/CapiPointsProvaider"
+import { UserProvider } from "./provaider/UserProvider"
 
 function Logout() {
   localStorage.clear();
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <>
+      <UserProvider>
       <CapiPointsProvider>
         <BrowserRouter>
           <Routes>
@@ -44,6 +46,8 @@ function App() {
           reverseOrder={false}
         />
       </CapiPointsProvider>
+      </UserProvider>
+
     </>
   )
 }

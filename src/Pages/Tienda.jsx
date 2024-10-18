@@ -21,13 +21,10 @@ function Tienda() {
 
                     </div>
                     <div className="flex flex-row w-full h-auto justify-center items-center gap-x-5 mt-5">
-                        <CardReveal Price="100" text='Sobre de Bronce' setDescription={setDescription} setText={setText} descripcion='Este sobre contiene capibaras comunes, perfectas para comenzar tu colección.'/>
-                        <CardReveal Price="100" text='Sobre de Plata' setDescription={setDescription} setText={setText} descripcion='Este sobre ofrece una mezcla equilibrada de capibaras de rareza media, con una pequeña posibilidad de obtener capibaras raras.'/>
-                        <CardReveal Price="100" text='Sobre de Oro' setDescription={setDescription} setText={setText} descripcion='Este sobre contiene capibaras de alta rareza, incluyendo las más especiales y únicas.'/>
+                        <CardReveal Price="500" text='Sobre de Bronce' setDescription={setDescription} setText={setText} descripcion='Este sobre contiene capibaras comunes, perfectas para comenzar tu colección.' probabilityProps={1}/>
+                        <CardReveal Price="1000" text='Sobre de Plata' setDescription={setDescription} setText={setText} descripcion='Este sobre ofrece una mezcla equilibrada de capibaras de rareza media, con una pequeña posibilidad de obtener capibaras raras.' probabilityProps={2}/>
+                        <CardReveal Price="2500" text='Sobre de Oro' setDescription={setDescription} setText={setText} descripcion='Este sobre contiene capibaras de alta rareza, incluyendo las más especiales y únicas.' probabilityProps={5}/>
                     </div>
-
-
-
 
                 </div>
 
