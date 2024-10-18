@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import capi from '../assets/coint.png'
 
 //provaider
-import { CapiPointsContext } from '../Provider/CapiPointsProvaider';
+import { CapiPointsContext } from '../Provider/CapiPointsProvider';
 import { UserContext } from '../Provider/UserProvider'
 
 const navigation = [

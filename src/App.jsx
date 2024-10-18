@@ -12,7 +12,7 @@ import Tienda from "./Pages/Tienda"
 import Profile from "./Pages/Profile"
 
 //provaider
-import { CapiPointsProvider } from "./Provider/CapiPointsProvaider"
+import { CapiPointsProvider } from "./Provider/CapiPointsProvider"
 import { UserProvider } from "./Provider/UserProvider"
 
 function Logout() {
