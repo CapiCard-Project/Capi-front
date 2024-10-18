@@ -12,8 +12,8 @@ import Tienda from "./Pages/Tienda"
 import Profile from "./Pages/Profile"
 
 //provaider
-import { CapiPointsProvider } from "./provaider/CapiPointsProvaider"
-import { UserProvider } from "./provaider/UserProvider"
+import { CapiPointsProvider } from "./Provider/CapiPointsProvaider"
+import { UserProvider } from "./Provider/UserProvider"
 
 function Logout() {
   localStorage.clear();

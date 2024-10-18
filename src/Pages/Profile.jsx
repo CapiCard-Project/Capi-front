@@ -1,7 +1,7 @@
 import NavBar from "../Components/NavBar"
 import default_profile from "../assets/default_profile.png"
 import { useContext } from "react"
-import { UserContext } from "../provaider/UserProvider"
+import { UserContext } from "../Provider/UserProvider"
 import { IoImages } from "react-icons/io5";
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoStorefrontSharp } from "react-icons/io5";

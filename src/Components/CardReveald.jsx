@@ -3,7 +3,7 @@ import imageUrl from "../assets/sobre.jpg";
 import coint from "../assets/coint.png";
 import { getCard } from "../api/apiTienda";
 import toast from "react-hot-toast";
-import { CapiPointsContext } from "../provaider/CapiPointsProvaider";
+import { CapiPointsContext } from "../Provider/CapiPointsProvaider";
 import { updateCapiPoints } from "../api/apiTienda";
 
 const CardReveal = ({ Price, setDescription, setText, text, descripcion, probabilityProps }) => {
