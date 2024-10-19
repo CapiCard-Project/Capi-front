@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         primary: '#181A2F',
         second_color: '#00BE8E',
+        button_color_click: '#17a883',
         color_blue: '#05083F'
       }
     },
