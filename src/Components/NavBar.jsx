@@ -1,14 +1,19 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 import iconHome from '../assets/icon-home.png'
-import { Navigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext } from 'react'
+
 import capi from '../assets/coint.png'
+
+//provaider
+import { CapiPointsContext } from '../Provider/CapiPointsProvider';
+import { UserContext } from '../Provider/UserProvider'
 
 const navigation = [
   { name: 'Home', href: '/home', current: true },
-  { name: 'Tienda', href: '/tienda', current: false },
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Store', href: '/tienda', current: false },
+  { name: 'Profile', href: '/profile', current: false },
   { name: 'Calendar', href: '#', current: false },
 ]
 
@@ -18,7 +23,11 @@ function classNames(...classes) {
 
 export default function NavBar() {
 
-  const [capipoins, setCapipoins] = useState(localStorage.getItem('capipoins'))
+  //provaider
+  const { capiPoints } = useContext(CapiPointsContext);
+  const { userImage } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   return (
     <Disclosure as="nav" className="bg-gradient-to-br from-black to-[#070722] ">
@@ -60,7 +69,7 @@ export default function NavBar() {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <img src={capi} className='w-10'/>
-          <h3 className='text-white' >{capipoins}</h3>
+          <h3 className='text-white' >{capiPoints}</h3>
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
@@ -70,7 +79,7 @@ export default function NavBar() {
                   {/* User avatar */}
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={userImage}
                     className="h-8 w-8 rounded-full"
                   />
                 </MenuButton>
@@ -80,9 +89,11 @@ export default function NavBar() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  <span
+                  onClick={() => navigate('/profile')}
+                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Your Profile
-                  </a>
+                  </span>
                 </MenuItem>
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">

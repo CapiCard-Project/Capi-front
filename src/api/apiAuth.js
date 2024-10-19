@@ -12,6 +12,7 @@ export const LoginAPI = async (email, password, navigate) => {
         if (response.data.status === 200) {
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('capipoins', response.data.user.capipoins)
+            localStorage.setItem('userImage', response.data.user.image)
             navigate('/home')
             toast.success('Inicio de sesión exitoso')
         }else{

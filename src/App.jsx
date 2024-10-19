@@ -12,7 +12,9 @@ import Tienda from "./Pages/Tienda"
 //import Profile from "./Pages/Profile"
 
 //provaider
-//import { CapiPointsProvider } from "./provaider/CapiPointsProvaider"
+
+import { CapiPointsProvider } from "./Provider/CapiPointsProvider"
+import { UserProvider } from "./Provider/UserProvider"
 
 // <CapiPointsProvider></CapiPointsProvider>
 function Logout() {
@@ -26,7 +28,8 @@ function App() {
 
   return (
     <>
-      
+      <UserProvider>
+      <CapiPointsProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/*" element={<Error404 />} />
@@ -46,7 +49,9 @@ function App() {
           position="bottom-center"
           reverseOrder={false}
         />
-      
+      </CapiPointsProvider>
+      </UserProvider>
+
     </>
   )
 }
