@@ -13,16 +13,18 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Poppins', 'sans-serif'],
+        lilita: ['"Lilita One"', 'cursive'],
       },
       colors: {
         primary: '#181A2F',
-        second_color: '#00BE8E',
+        second_color: '#7b2bfc',
         button_color_click: '#17a883',
         color_blue: '#05083F'
       }
     },
   },
   plugins: [
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss",
+    require('tailwind-scrollbar')
   ],
 }

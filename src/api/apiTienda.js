@@ -39,3 +39,16 @@ export const updateCapiPoints = async (capiPoints) => {
     }
 
 }
+
+//funcion para guardar las cartas en la base de datos
+export const saveCardByUser = async (cardId) =>  {
+
+    try {
+        const response = await apiService.post('saveCardByUser', {
+            'card_id': cardId
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error)
+    }
+}

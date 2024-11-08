@@ -96,12 +96,12 @@ export default function NavBar() {
                   </span>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
-                    Settings
+                  <a href="/paymenth" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                    Capi Coints
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  <a href="/logout" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Sign out
                   </a>
                 </MenuItem>

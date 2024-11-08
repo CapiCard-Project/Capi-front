@@ -4,7 +4,7 @@
 
 function Error404() {
     return (
-        <div className="grid h-screen place-content-center bg-primary px-4">
+        <div className="grid h-screen place-content-center bg-gradient-to-b from-black to-slate-900 px-4">
             <div className="text-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

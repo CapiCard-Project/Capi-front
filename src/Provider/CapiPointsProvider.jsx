@@ -11,6 +11,19 @@ export const CapiPointsProvider = ({ children }) => { // Change 'Children' to 'c
         localStorage.setItem('capipoins', capiPoints);
     }, [capiPoints]);
 
+    useEffect(() => {
+        const handleStorage = () => {
+            const updatedCapipoins = parseInt(localStorage.getItem('capipoins')) || 0;
+            setCapiPoints(updatedCapipoins);
+        }
+
+        window.addEventListener('storage', handleStorage);
+
+        return () => {
+            window.removeEventListener('storage', handleStorage);
+        }
+    }, []);
+
     return (
         <CapiPointsContext.Provider value={{ capiPoints, setCapiPoints }}>
             {children} 

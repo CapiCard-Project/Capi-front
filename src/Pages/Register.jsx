@@ -22,15 +22,15 @@ function Register() {
     }
     
     return (
-        <section className="relative flex flex-wrap h-screen lg:items-center bg-primary">
+        <section className="relative flex flex-wrap h-screen lg:items-center bg-black">
             <div className=" w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
                 <div className="mx-auto max-w-lg text-center">
-                    <h1 className="text-2xl font-bold sm:text-4xl text-second_color">Registrate con tu cuenta</h1>
+                    <h1 className="text-2xl font-bold sm:text-4xl text-second_color">Register</h1>
 
                     <p
                         onClick={() => navigate('/login')}
                         className="mt-4 text-second_color font-semibold cursor-pointer">
-                        <span className='text-gray-400 font-light'>Ya tienes una cuenta?</span> Registar
+                        <span className='text-gray-400 font-light'>Do you have any account?</span> Login
                     </p>
                 </div>
 
@@ -41,7 +41,7 @@ function Register() {
                         <div className="relative">
                             <input
                                 type="text"
-                                className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-color_blue text-white"
+                                className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                 placeholder="Digite su nombre de usuario"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
@@ -71,7 +71,7 @@ function Register() {
                         <div className="relative">
                             <input
                                 type="email"
-                                className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-color_blue text-white"
+                                className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                 placeholder="Digite su correo electronico"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -102,7 +102,7 @@ function Register() {
                         <div className="relative">
                             <input
                                 type="password"
-                                className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-color_blue text-white"
+                                className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                 placeholder="Digite su contraseña"
                                 value={password}
                                 onChange={(e)=> setPassword(e.target.value)}  
@@ -140,7 +140,7 @@ function Register() {
                             type="submit"
                             className="inline-block rounded-xl bg-second_color px-5 py-3 text-sm font-medium text-white w-full "
                         >
-                            Registarte!
+                            Register!
                         </button>
                     </div>
                 </form>

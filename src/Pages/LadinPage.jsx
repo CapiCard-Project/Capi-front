@@ -16,7 +16,7 @@ export const LandingPage = () => {
           <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white">
             <h1 className="text-5xl font-bold mb-4">Capibara Trading Cards</h1>
             <h2 className="text-2xl mb-6">Colecciona, intercambia y disfruta de la aventura</h2>
-            <button onClick={() => handleClick()} className="bg-second_color border-black border hover:bg-button_color_click text-white font-bold py-2 px-4 rounded shadow-xl">
+            <button onClick={() => handleClick()} className="bg-primary bg-opacity-75 border-none hover:bg-black hover:bg-opacity-75 text-white font-bold py-5 rounded-full shadow-xl w-1/4">
               Comienza tu aventura
             </button>
           </div>
@@ -25,11 +25,11 @@ export const LandingPage = () => {
         {/* Sección 2 */}
         <section className="flex flex-col lg:flex-row items-center py-16 px-4">
           <div className="lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
-            <h2 className="text-4xl font-bold mb-4 text-white">Trading Cards de Capibaras</h2>
-            <p className="text-lg mb-4 text-white">
+            <h2 className="text-4xl font-bold mb-4 text-second_color">Trading Cards de Capibaras</h2>
+            <p className="text-lg mb-4 text-white font-extralight text-justify">
               Las cartas coleccionables de capibaras ofrecen una experiencia única para los amantes de los capibaras. Con cada carta, obtendrás una representación única de nuestros amigos capibaras en situaciones temáticas divertidas y emocionantes.
             </p>
-            <p className="text-lg text-white">
+            <p className="text-lg text-slate-500">
               ¡Colecciona tus cartas, intercambia con otros usuarios y participa en eventos especiales!
             </p>
           </div>

@@ -1,25 +1,35 @@
+import { useContext } from "react"
 import apiService from "./apiService"
 import { toast } from "react-hot-toast"
+import { CapiPointsContext } from "../Provider/CapiPointsProvider"
+
 
 // Función para registrar un usuario
 export const LoginAPI = async (email, password, navigate) => {
+
     try {
         const response = await apiService.post('login', {
             email: email,
             password: password
         })
-        console.log(response)
+        console.log('response:', response)
         if (response.data.status === 200) {
             localStorage.setItem('token', response.data.token)
-            localStorage.setItem('capipoins', response.data.user.capipoins)
             localStorage.setItem('userImage', response.data.user.image)
+
             navigate('/home')
-            toast.success('Inicio de sesión exitoso')
-        }else{
-            toast.error('Error al iniciar sesión')
+            toast.success('Successful login')
+
+            return response.data.user
         }
     }catch(error){
         console.error(error);
+        
+        if (error.response.status === 401) {
+            toast.error('Incorrect email or password')
+        } else {
+            toast.error('Error in login')
+        }
     }
 }
 
@@ -36,13 +46,11 @@ export const registrarAPI = async (username, email, password, navigate) => {
         if(response.data.status === 201){
             localStorage.setItem('token', response.data.token)
             navigate('/home')
-            toast.success('Registro exitoso') 
-        }else{
-            toast.error('Error al registrar')
+            toast.success('Registered successfully') 
         }
     } catch (error) {
-        console.error(error);
-        console.error('Error data:', error.response.data); 
+        console.error('Error data:', error.response.data);
+        toast.error('Error in registration')
     }
 }
 

@@ -4,7 +4,9 @@ import coint from "../assets/coint.png";
 import { getCard } from "../api/apiTienda";
 import toast from "react-hot-toast";
 import { CapiPointsContext } from "../Provider/CapiPointsProvider";
-import { updateCapiPoints } from "../api/apiTienda";
+import { updateCapiPoints, saveCardByUser } from "../api/apiTienda";
+import ButtonCustom from "./ButtonCustom";
+
 
 const CardReveal = ({ Price, setDescription, setText, text, descripcion, probabilityProps }) => {
 
@@ -38,7 +40,7 @@ const CardReveal = ({ Price, setDescription, setText, text, descripcion, probabi
 
       // probabilityProps
       setprobability(probabilityProps),
-      await handleClick(probabilityProps)
+        await handleClick(probabilityProps)
       await updateCapiPoints(capiPointsItem - PriceItem)
     } else {
       toast.error('No tienes suficientes capi points')
@@ -46,11 +48,20 @@ const CardReveal = ({ Price, setDescription, setText, text, descripcion, probabi
 
   }
 
+  const handleSaveCardByUser = async () => {
+    const response = await saveCardByUser(card.id)
+    if (response.status === 200) {
+      window.location.reload()
+      toast.success('Save Card')
+    } else {
+      toast.error('Error in save card')  
+    }
+  }
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center py-5">
       <div
-        className={`relative w-40 md:w-52 2xl:w-80 h-96 cursor-pointer overflow-hidden ${isRevealed ? "hover:shadow-lg" : "hover:shadow-lg"
-          }`}
+        className={`relative w-full min-h-[55vh] cursor-pointer overflow-hidden`}
       >
         <div
           className={`absolute inset-0 transition-transform duration-700 ${isRevealed ? "-translate-y-full" : "translate-y-0"
@@ -86,21 +97,23 @@ const CardReveal = ({ Price, setDescription, setText, text, descripcion, probabi
         </div>
       </div>
 
-      {/* Aquí puedes agregar más contenido debajo de la imagen */}
-      <div className=" flex mt-4 w-full justify-center items-center">
-        <img src={coint} className="w-14" />
-        <button className=" px-8 py-1 bg-second_color text-white rounded-lg"
-          onClick={async () => {
-            const PriceItem = parseInt(Price)
-            const capiPointsItem = parseInt(capiPoints)
+      {
+        isRevealed ? (
+          <div className="mt-4">
+          <ButtonCustom text="Guardar" onClick={async () => handleSaveCardByUser()}/>
+          </div>
+        ) : (
+          <div className=" flex mt-4 w-full justify-center items-center gap-x-2">
+            <img src={coint} className="w-14" />
+            <ButtonCustom text={Price} onClick={async () => {
+                const PriceItem = parseInt(Price)
+                const capiPointsItem = parseInt(capiPoints)
 
-            await handleCapiPoints(PriceItem, capiPointsItem)
-
-          }}
-        >
-          {Price}
-        </button>
-      </div>
+                await handleCapiPoints(PriceItem, capiPointsItem)
+            }} />
+          </div>
+        )
+      }
     </div>
   );
 };

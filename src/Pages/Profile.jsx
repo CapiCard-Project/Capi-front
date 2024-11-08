@@ -12,7 +12,7 @@ function Profile() {
   const { userImage } = useContext(UserContext);
 
   return (
-    <div className="flex flex-col bg-gradient-to-bl bg-primary w-full h-screen overflow-y-hidden">
+    <div className="flex flex-col bg-black w-full h-screen overflow-y-hidden">
       <NavBar />
 
       <div className="flex flex-col md:flex-row items-center  justify-start w-full h-full my-2">
