@@ -19,7 +19,7 @@ function Login() {
     const handleSubmit = async (e) => {
         setIsLoading(true);
         e.preventDefault();
-        const response = await LoginAPI(email, password, navigate);
+        const response = await LoginAPI(email, password, navigate, setIsLoading);
         setCapiPoints(response.capipoins);
         setIsLoading(false);
 

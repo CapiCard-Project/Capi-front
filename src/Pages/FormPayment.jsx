@@ -17,6 +17,7 @@ import ButtonCustomGeneral from "../Components/ButtonCustomGeneral"
 import coint from '../assets/coint.png'
 import Card from "../Components/Card"
 import CrediCard from "../Components/CrediCard"
+import { useNavigate } from "react-router-dom"
 
 //funciones de metodos de pago
 import { bankList, createPaymentPSE } from "../api/apiPayment"
@@ -37,6 +38,9 @@ function FormPayment() {
     const [idNumber, setIdNumber] = useState('');
     const [bank, setBank] = useState('');
     const [bankId, setBankId] = useState('');
+
+    //navegcion
+    const navigate = useNavigate();
 
     //estado para manejar la lista de bancos
     const [bankListState, setBankList] = useState([]);
@@ -84,8 +88,10 @@ function FormPayment() {
                 'phone': phone.toString()
             }
         }
-        console.log('paymentdata:', paymentdataJson);
-        await createPaymentPSE(paymentdataJson);
+
+        const response = await createPaymentPSE(paymentdataJson);
+        window.location.href = response.transaction_details.external_resource_url;
+        
     }
 
     const formatCurrency = (value) => {
@@ -143,7 +149,7 @@ function FormPayment() {
                                                 </MenuButton>
 
                                                 <MenuItems className="mt-2 bg-primary rounded-3xl max-h-40 overflow-y-auto border-2 border-white px-5 py-2 overflow-hidden">
-                                                    {
+                                                    {bankListState && bankListState.length > 0 ? (
                                                         bankListState.map((bank, index) => (
                                                             <MenuItem
                                                                 as="button"
@@ -157,6 +163,7 @@ function FormPayment() {
                                                                 <hr />
                                                             </MenuItem>
                                                         ))
+                                                        ): <MenuItem as="button" className="p-2 text-white w-full text-left text-[10px] lg:text-[14px]">No banks</MenuItem>
                                                     }
                                                 </MenuItems>
                                             </Menu>

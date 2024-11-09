@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export const apiService = axios.create({
-    baseURL: 'http://localhost:82/api/',
+    baseURL: 'https://api.capi.shop/api/',
 })
 
 apiService.interceptors.request.use(

@@ -5,14 +5,13 @@ import { CapiPointsContext } from "../Provider/CapiPointsProvider"
 
 
 // Función para registrar un usuario
-export const LoginAPI = async (email, password, navigate) => {
+export const LoginAPI = async (email, password, navigate, setIsload) => {
 
     try {
         const response = await apiService.post('login', {
             email: email,
             password: password
         })
-        console.log('response:', response)
         if (response.data.status === 200) {
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('userImage', response.data.user.image)
@@ -26,8 +25,10 @@ export const LoginAPI = async (email, password, navigate) => {
         console.error(error);
         
         if (error.response.status === 401) {
+            setIsload(false)
             toast.error('Incorrect email or password')
         } else {
+            setIsload(false)
             toast.error('Error in login')
         }
     }

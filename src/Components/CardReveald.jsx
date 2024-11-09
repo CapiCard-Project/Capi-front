@@ -8,7 +8,7 @@ import { updateCapiPoints, saveCardByUser } from "../api/apiTienda";
 import ButtonCustom from "./ButtonCustom";
 
 
-const CardReveal = ({ Price, setDescription, setText, text, descripcion, probabilityProps }) => {
+const CardReveal = ({ Price, probabilityProps }) => {
 
   const [isRevealed, setIsRevealed] = useState(false);
 
