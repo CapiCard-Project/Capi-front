@@ -9,8 +9,8 @@ function ProtectRoute({ children }) {
     }, []);
 
     const auth = async () => {
-        console.log(localStorage.getItem('token'));
-        const token = localStorage.getItem('token');
+        console.log(sessionStorage.getItem('token'));
+        const token = sessionStorage.getItem('token');
         if (!token) {
             setIsAuth(false);
             return;

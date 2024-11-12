@@ -4,27 +4,33 @@ import { useContext, useState } from 'react';
 import { LoginAPI } from '../api/apiAuth';
 import { toast } from 'react-hot-toast'
 import { CapiPointsContext } from '../Provider/CapiPointsProvider';
-import Load from '../Components/load';
+import { UserContext } from '../Provider/UserProvider';
+import Load from '../Components/Load';
+
+// bilbioteca react-hook-from
+import { useForm } from 'react-hook-form';
 
 function Login() {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const { setCapiPoints } = useContext(CapiPointsContext);
+    const { setUserImage } = useContext(UserContext);
 
     // estado de carga de la pagina
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
+    const { register, handleSubmit, formState: {
+        errors
+    } } = useForm();
+
+    const onSubmit = handleSubmit(async (data) => {
+
         setIsLoading(true);
-        e.preventDefault();
-        const response = await LoginAPI(email, password, navigate, setIsLoading);
+        const response = await LoginAPI(data.email, data.password, navigate, setIsLoading)
         setCapiPoints(response.capipoins);
+        setUserImage(response.image);
         setIsLoading(false);
-
-    }
-
+    })
 
     return (
         <>
@@ -44,7 +50,7 @@ function Login() {
                                     </p>
                                 </div>
 
-                                <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+                                <form onSubmit={onSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
                                     <div>
                                         <label htmlFor="email" className="sr-only">Email</label>
 
@@ -53,8 +59,11 @@ function Login() {
                                                 type="email"
                                                 className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                                 placeholder="Enter email"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
+                                                {...register('email', {
+                                                    required: true,
+                                                    pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/i
+                                                    
+                                                })}
                                             />
 
                                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -73,6 +82,9 @@ function Login() {
                                                     />
                                                 </svg>
                                             </span>
+                                            {
+                                                errors.email && <span className="text-second_color font-extralight text-[12px]">This field is required</span>
+                                            }
                                         </div>
                                     </div>
 
@@ -84,8 +96,9 @@ function Login() {
                                                 type="password"
                                                 className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                                 placeholder="Enter password"
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
+                                                {...register('password', {
+                                                    required: true,
+                                                })}
                                             />
 
                                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -110,6 +123,9 @@ function Login() {
                                                     />
                                                 </svg>
                                             </span>
+                                            {
+                                                errors.password && <span className="text-second_color font-extralight text-[12px]">This field is required</span>
+                                            }
                                         </div>
                                     </div>
 

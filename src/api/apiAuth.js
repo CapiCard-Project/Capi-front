@@ -13,12 +13,11 @@ export const LoginAPI = async (email, password, navigate, setIsload) => {
             password: password
         })
         if (response.data.status === 200) {
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('userImage', response.data.user.image)
+            sessionStorage.setItem('token', response.data.token)
+            sessionStorage.setItem('userName', response.data.user.name)
 
             navigate('/home')
             toast.success('Successful login')
-
             return response.data.user
         }
     }catch(error){
@@ -35,24 +34,41 @@ export const LoginAPI = async (email, password, navigate, setIsload) => {
 }
 
 // Función para registrar un usuario
-export const registrarAPI = async (username, email, password, navigate) => {
+export const registrarAPI = async (username, email, password, navigate, setIsload) => {
     console.log(username, email, password)
     try {
         const response = await apiService.post('register', {
             name: username,
             email: email,
-            password: password
+            password: password,
+            image: 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'
         })
+        console.log(response)
         //validacion de la respuesta
         if(response.data.status === 201){
-            localStorage.setItem('token', response.data.token)
-            navigate('/home')
-            toast.success('Registered successfully') 
+            navigate('/login')
+            toast.success('Registered successfully')
         }
     } catch (error) {
         console.error('Error data:', error.response.data);
+        setIsload(false) 
         toast.error('Error in registration')
     }
 }
 
+export const uploadImage = async (file) => {
+
+    try {
+        const formData = new FormData(); 
+        formData.append('image', file);
+
+        const response = await apiService.post('uploadImage', formData);
+        console.log(response)
+        return response.data
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
 

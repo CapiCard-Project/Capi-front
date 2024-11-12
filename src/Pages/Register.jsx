@@ -1,28 +1,45 @@
 import { useNavigate } from 'react-router-dom'
 import fondo from '../assets/fondoRegister.jpeg'
-import { useState } from 'react';  
+import { useState, useContext } from 'react';  
 import { registrarAPI } from '../api/apiAuth';
+import { useForm } from 'react-hook-form';
+import Load from '../Components/Load';
 
 import React from 'react'
+import { CapiPointsContext } from '../Provider/CapiPointsProvider';
+import { UserContext } from '../Provider/UserProvider';
 
 function Register() {
 
     //variables de estado
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    // bilbioteca react-hook-from
+    const { register, handleSubmit, formState: {
+        errors
+    } } = useForm();
 
     // navegacion de usuario
     const navigate = useNavigate();
 
+    //contexto de usuario
+    const { setCapiPoints } = useContext(CapiPointsContext);
+    const { setUserImage } = useContext(UserContext)
+
     //funcione handle para registro
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await registrarAPI(username, email, password, navigate);
-    }
+    const onSubmit = handleSubmit(async (data) => {
+        setIsLoading(true);
+        await registrarAPI(data.username, data.email, data.password, navigate, setIsLoading)
+
+    })
     
     return (
-        <section className="relative flex flex-wrap h-screen lg:items-center bg-black">
+        <>
+        {
+            isLoading 
+                ? <Load/>
+                : (
+                    <section className="relative flex flex-wrap h-screen lg:items-center bg-black">
             <div className=" w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
                 <div className="mx-auto max-w-lg text-center">
                     <h1 className="text-2xl font-bold sm:text-4xl text-second_color">Register</h1>
@@ -34,7 +51,7 @@ function Register() {
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+                <form onSubmit={onSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
                     <div>
                         <label htmlFor="username" className="sr-only">Email</label>
 
@@ -43,8 +60,11 @@ function Register() {
                                 type="text"
                                 className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                 placeholder="Digite su nombre de usuario"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                {...register('username', {
+                                    required: true,
+                                    minLength: 5,
+                                    maxLength: 15,
+                                })}
                             />
 
                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -64,6 +84,7 @@ function Register() {
                                 </svg>
                             </span>
                         </div>
+                        { errors.username && <span className="text-second_color font-extralight text-[12px]">This field is not valid</span> }
                     </div>
                     <div>
                         <label htmlFor="email" className="sr-only">Email</label>
@@ -73,8 +94,10 @@ function Register() {
                                 type="email"
                                 className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                 placeholder="Digite su correo electronico"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                {...register('email', {
+                                    required: true,
+                                    pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/i
+                                })}
                             />
 
                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -93,6 +116,7 @@ function Register() {
                                     />
                                 </svg>
                             </span>
+                            { errors.email && <span className="text-second_color font-extralight text-[12px]">This field is not valid</span> }
                         </div>
                     </div>
 
@@ -104,8 +128,11 @@ function Register() {
                                 type="password"
                                 className="w-full rounded-lg border-none p-4 pe-12 text-sm shadow-sm bg-primary text-white"
                                 placeholder="Digite su contraseña"
-                                value={password}
-                                onChange={(e)=> setPassword(e.target.value)}  
+                                {...register('password', {
+                                    required: true,
+                                    minLength: 8,
+                                    maxLength: 15,
+                                })} 
                             />
 
                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -130,6 +157,7 @@ function Register() {
                                     />
                                 </svg>
                             </span>
+                            { errors.password && <span className="text-second_color font-extralight text-[12px]">This field is not valid</span> }
                         </div>
                     </div>
 
@@ -151,6 +179,10 @@ function Register() {
                 />
             </div>
         </section>
+                )
+
+        }
+        </>
     )
 }
 

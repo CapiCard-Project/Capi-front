@@ -59,7 +59,7 @@ const CardReveal = ({ Price, probabilityProps }) => {
   }
 
   return (
-    <div className="flex flex-col items-center py-5">
+    <div className="flex flex-col py-5 min-w-[350px] max-w-[400px]">
       <div
         className={`relative w-full min-h-[55vh] cursor-pointer overflow-hidden`}
       >
@@ -68,11 +68,9 @@ const CardReveal = ({ Price, probabilityProps }) => {
             }`}
         >
           <div
-            className="w-full h-full bg-cover bg-center shadow-2xl"
+            className="w-full h-full bg-cover bg-center shadow-2xl rounded-3xl"
             style={{
               backgroundImage: `url(${imageUrl})`,
-              clipPath:
-                "polygon(50% 0%, 95% 8%, 100% 87%, 50% 100%, 0 85%, 5% 9%)",
             }}
             onClick={() => {
               setText(text),
@@ -87,11 +85,9 @@ const CardReveal = ({ Price, probabilityProps }) => {
             }`}
         >
           <div
-            className="w-full h-full bg-cover bg-center"
+            className="w-full h-full bg-cover bg-center rounded-3xl"
             style={{
               backgroundImage: `url(${card.image})`,
-              clipPath:
-                "polygon(50% 0%, 95% 8%, 100% 87%, 50% 100%, 0 85%, 5% 9%)",
             }}
           ></div>
         </div>

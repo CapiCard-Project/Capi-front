@@ -14,7 +14,6 @@ const navigation = [
   { name: 'Home', href: '/home', current: true },
   { name: 'Store', href: '/tienda', current: false },
   { name: 'Profile', href: '/profile', current: false },
-  { name: 'Calendar', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -77,11 +76,17 @@ export default function NavBar() {
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
                   {/* User avatar */}
-                  <img
-                    alt=""
-                    src={userImage}
-                    className="h-8 w-8 rounded-full"
-                  />
+                  {
+                    userImage != null ? <img
+                                          alt=""
+                                          src={userImage}
+                                          className="h-8 w-8 rounded-full"
+                                        /> : <img
+                                                alt=""
+                                                src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                                                className="h-8 w-8 rounded-full"
+                                              />
+                  }
                 </MenuButton>
               </div>
               <MenuItems

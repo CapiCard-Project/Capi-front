@@ -71,7 +71,7 @@ function Tienda() {
 
                     <h1 className="text-white mt-5 font-lilita text-3xl">Pack Open</h1>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 px-5">
+                    <div className="flex flex-col items-center">
                         <CardReveal Price="500" probabilityProps={1} />
                         <CardReveal Price="1000" probabilityProps={2} />
                         <CardReveal Price="2500" probabilityProps={5} />
@@ -84,7 +84,7 @@ function Tienda() {
                     isOpen && (
                     <div
                         style={{ top: position.y, left: position.x }}
-                        className="absolute bg-black rounded-3xl py-5 px-5 gap-y-5 z-50"
+                        className="absolute bg-black rounded-3xl py-5 px-5 gap-y-5 z-50 translate-y-[35px] translate-x-[-25px]"
                     >
                         <MenuButton />
                         <MenuButton />
@@ -103,10 +103,18 @@ function Tienda() {
         return (
             <div className="flex items-start justify-between w-full h-full py-10 px-10 gap-x-5">
                 <div className="flex flex-col">
-                    <MenuButton />
-                    <MenuButton />
-                    <MenuButton />
-                    <MenuButton />
+                    <MenuButton onPressed={() => {
+                        console.log('click')
+                    }} text="Open Pack" />
+                    <MenuButton onPressed={() => {
+                        console.log('click')
+                    }} text="Open Pack" />
+                    <MenuButton onPressed={() => {
+                        console.log('click')
+                    }} text="Open Pack" />
+                    <MenuButton onPressed={() => {
+                        console.log('click')
+                    }} text="Open Pack" />
                 </div>
 
                 <div className="flex flex-col">
@@ -121,10 +129,13 @@ function Tienda() {
 
                     <h1 className="text-white mt-5 font-lilita text-3xl">Pack Open</h1>
 
+                    <div className="flex items-center justify-center w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-x-10 px-5">
                         <CardReveal Price="500" probabilityProps={1} />
                         <CardReveal Price="1000" probabilityProps={2} />
                         <CardReveal Price="2500" probabilityProps={5} />
+                    </div>
+
                     </div>
 
                 </div>

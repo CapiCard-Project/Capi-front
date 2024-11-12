@@ -2,6 +2,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import ProtectRoute from "./Components/ProtectRoute"
 import { Toaster } from "react-hot-toast"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 // paginas
 import {LandingPage} from "./Pages/LadinPage"
 import Login from "./Pages/Login"
@@ -12,6 +14,7 @@ import Tienda from "./Pages/Tienda"
 import LadingPageTest from "./Pages/LadingPageTest"
 import Profile from "./Pages/Profile"
 import FormPayment from "./Pages/FormPayment"
+import StatusPayment from "./Pages/StatusPayment"
 
 //provaider
 import { CapiPointsProvider } from "./Provider/CapiPointsProvider"
@@ -19,10 +22,14 @@ import { UserProvider } from "./Provider/UserProvider"
 
 // <CapiPointsProvider></CapiPointsProvider>
 function Logout() {
-  localStorage.removeItem("user");
-  localStorage.removeItem("token");
-  localStorage.removeItem("capiPoints"); 
-  return <Navigate to="/login" />
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    sessionStorage.clear()
+    navigate('/login')
+  }, [navigate])
+
+  return null
 
 }
 
@@ -44,6 +51,7 @@ function App() {
             <Route path="/tienda" element={<ProtectRoute> <Tienda /> </ProtectRoute>} />
             <Route path="/profile" element={<ProtectRoute> <Profile/> </ProtectRoute>}/>
             <Route path="/paymenth" element={<ProtectRoute> <FormPayment/> </ProtectRoute>}/>
+            <Route path="/statusPayment" element={<StatusPayment/>}/>
           </Routes>
         </BrowserRouter>
 
